@@ -106,8 +106,8 @@ mygbm50 <- train(x = as.matrix(mytrain), # training set
                                        shrinkage = .1))
 
 # Predicted probabilities in training set
-training_pred <- mygbm$pred %>% 
-  mutate(model = "GBM") %>% 
+training_pred <- mygbm50$pred %>% 
+  mutate(model = "GBM 50") %>% 
   group_by(obs, rowIndex, model) %>% 
   summarise(Agency_mean = mean(Agency),
             Agency_sd = sd(Agency),
@@ -138,6 +138,7 @@ myfeatures <- hearings %>%
   unique() %>% 
   rename("House" = "filter_House",
          "Joint" = "filter_Joint")
+
 # proportion subtopic
 myfeatures <- hearings %>% 
   group_by(subtopic, Congress) %>% 
